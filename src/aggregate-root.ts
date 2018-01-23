@@ -30,7 +30,7 @@ export abstract class AggregateRoot {
     this.autoCommit && this.publish(event);
 
     const handler = this.getEventHandler(event);
-    handler && handler(event);
+    handler && handler.call(this, event);
   }
 
   private getEventHandler(event: IEvent) {
